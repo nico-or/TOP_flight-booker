@@ -5,3 +5,51 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require 'csv'
+def load_csv(path)
+  opts = { headers: true, header_converters: :symbol }
+  CSV.read(path, opts)
+end
+
+## Continents
+# Headers:[:code, :name]
+data = load_csv('db/csv-data/continent-codes.csv')
+
+data.each do |row|
+  Continent.create!(
+    code: row[:code],
+    name: row[:name]
+  )
+end
+
+## Countries
+# Headers: [ .... ]
+data = load_csv('db/csv-data/country-codes.csv')
+
+data.each do |row|
+  continent = Continent.find_by_code(row[:continent])
+  next unless continent
+
+  continent.countries.create!(
+    code: row[:iso31661alpha2],
+    name: row[:cldr_display_name]
+  )
+end
+
+## Airports
+# Headers: [ :ident, :type, :name, :elevation_ft, :continent, :iso_country,
+#   :iso_region, :municipality, :gps_code, :iata_code, :local_code, :coordinates]
+data = load_csv('db/csv-data/airport-codes.csv')
+data.delete_if { |e| e[:type] != 'large_airport' }
+data.delete_if { |e| e[:iata_code].nil? }
+
+data.each do |row|
+  country = Country.find_by_code(row[:iso_country])
+  next unless country
+
+  country.airports.create!(
+    code: row[:iata_code],
+    name: row[:name]
+  )
+end
