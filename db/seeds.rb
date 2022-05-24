@@ -53,3 +53,25 @@ data.each do |row|
     name: row[:name]
   )
 end
+
+## Flights
+NUM_FLIGHTS = 20
+AIRPORTS_IDS = Airport.ids
+
+NUM_FLIGHTS.times do
+  departure_id = AIRPORTS_IDS.sample
+  destination_id = departure_id
+  loop do
+    destination_id = AIRPORTS_IDS.sample
+    break if destination_id != departure_id
+  end
+  flight_duration = (1.hour + rand(3.hours)).in_seconds
+  departure_datetime = Faker::Time.forward(days: 365)
+
+   Flight.create(
+    departure_airport_id: departure_id,
+    destination_airport_id: destination_id,
+    departure: departure_datetime,
+    duration: flight_duration
+  )
+end
