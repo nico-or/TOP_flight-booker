@@ -17,7 +17,7 @@ end
 data = load_csv('db/csv-data/continent-codes.csv')
 
 data.each do |row|
-  Continent.create!(
+  Continent.find_or_create_by(
     code: row[:code],
     name: row[:name]
   )
@@ -31,7 +31,7 @@ data.each do |row|
   continent = Continent.find_by_code(row[:continent])
   next unless continent
 
-  continent.countries.create!(
+  continent.countries.find_or_create_by(
     code: row[:iso31661alpha2],
     name: row[:cldr_display_name]
   )
@@ -48,7 +48,7 @@ data.each do |row|
   country = Country.find_by_code(row[:iso_country])
   next unless country
 
-  country.airports.create!(
+  country.airports.find_or_create_by(
     code: row[:iata_code],
     name: row[:name]
   )
