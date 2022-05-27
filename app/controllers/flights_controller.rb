@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
   def index
-    @airports = Airport.first 10
-    @flights = Flight.all
+    @continents = Continent.all.includes(:countries)
+    @countries = Country.all.includes(:airports)
   end
 end
