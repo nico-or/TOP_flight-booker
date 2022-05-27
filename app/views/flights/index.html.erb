@@ -40,7 +40,16 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class='col-lg-6'>
+      <%= f.label :time, 'Flight Time', class: 'form-label fw-bold' %>
+      <%= f.collection_select :time, @flights, :id, :strf_departure_dmy, {}, { class: 'form-select' } %>
+    </div>
+    <div class = "col ms-auto align-self-end justify-self-right">
+      <%= f.submit 'Search Flight', class: 'btn btn-primary mt-4' %>
+    </div>
+  </div>
 
-  <%= f.submit 'Search Flight', class: 'btn btn-primary' %>
+
 
 <% end %>
