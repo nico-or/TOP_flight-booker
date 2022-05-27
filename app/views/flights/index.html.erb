@@ -1,29 +1,46 @@
 <h1>Flights</h1>
 
 <%= form_with url: '/flights', method: :get do |f| %>
+  <div class="row">
+    <div class='col-lg-6 mb-4'>
+      <h4>Departure</h4>
+      <div class = 'mb-2'>
+        <%= f.label :departure_continent, 'Continent', class: 'form-label fw-bold' %>
+        <%= f.collection_select :departure_continent, @continents,
+        :name, :name, {}, { class: 'form-select' } %>
+      </div>
+      <div class = 'mb-2'>
+        <%= f.label :departure_country, 'Country', class: 'form-label fw-bold' %>
+        <%= f.grouped_collection_select :departure_country, @continents,
+        :countries, :name, :name, :name, {}, { class: 'form-select' } %>
+      </div>
+      <div class = 'mb-2'>
+        <%= f.label :departure_airport, 'Airport', class: 'form-label fw-bold' %>
+        <%= f.grouped_collection_select :departure_airport, @countries,
+        :airports, :name, :code, :name, {}, { class: 'form-select' }%>
+      </div>
+    </div>
+    <div class='col-lg-6 mb-4'>
+      <h4>Destination</h4>
+      <div class="mb-2">
+        <%= f.label :arrival_continent, 'Continent', class: 'form-label fw-bold' %>
+        <%= f.collection_select :arrival_continent, @continents,
+        :name, :name, {}, { class: 'form-select' } %>
+      </div>
+      <div class="mb-2">
+        <%= f.label :arrival_country, 'Country', class: 'form-label fw-bold' %>
+        <%= f.grouped_collection_select :arrival_country, @continents,
+        :countries, :name, :name, :name, {}, { class: 'form-select' } %>
+      </div>
+      <div class="mb-2">
+        <%= f.label :arrival_airport, 'Airport', class: 'form-label fw-bold' %>
+        <%= f.grouped_collection_select :arrival_airport, @countries,
+        :airports, :name, :code, :name, {}, { class: 'form-select' } %>
+      </div>
+    </div>
+  </div>
 
-  <%= f.label :departure_continent, 'Departure Continent' %>
-  <%= f.collection_select :departure_continent, @continents, :name, :name %>
 
-  <%= f.label :departure_country, 'Departure Country' %>
-  <%= f.grouped_collection_select :departure_country, @continents,
-  :countries, :name, :name, :name %>
-
-  <%= f.label :departure_airport, 'Departure Airport' %>
-  <%= f.grouped_collection_select :departure_airport, @countries,
-  :airports, :name, :code, :name %>
-
-  <%= f.label :arrival_continent, 'Destination Continent' %>
-  <%= f.collection_select :arrival_continent, @continents, :name, :name %>
-
-  <%= f.label :arrival_country, 'Destination Country' %>
-  <%= f.grouped_collection_select :arrival_country, @continents,
-  :countries, :name, :name, :name %>
-
-  <%= f.label :arrival_airport, 'Destination Airport' %>
-  <%= f.grouped_collection_select :arrival_airport, @countries,
-  :airports, :name, :code, :name %>
-
-  <%= f.submit 'Search Flight' %>
+  <%= f.submit 'Search Flight', class: 'btn btn-primary' %>
 
 <% end %>
