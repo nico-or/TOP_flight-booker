@@ -5,16 +5,6 @@
     <div class='col-lg-6 mb-4'>
       <h4>Departure</h4>
       <div class = 'mb-2'>
-        <%= f.label :departure_continent, 'Continent', class: 'form-label fw-bold' %>
-        <%= f.collection_select :departure_continent, @continents,
-        :name, :name, {}, { class: 'form-select' } %>
-      </div>
-      <div class = 'mb-2'>
-        <%= f.label :departure_country, 'Country', class: 'form-label fw-bold' %>
-        <%= f.grouped_collection_select :departure_country, @continents,
-        :countries, :name, :name, :name, {}, { class: 'form-select' } %>
-      </div>
-      <div class = 'mb-2'>
         <%= f.label :departure_airport, 'Airport', class: 'form-label fw-bold' %>
         <%= f.grouped_collection_select :departure_airport, @countries,
         :airports, :name, :code, :name, {}, { class: 'form-select' }%>
@@ -22,16 +12,6 @@
     </div>
     <div class='col-lg-6 mb-4'>
       <h4>Destination</h4>
-      <div class="mb-2">
-        <%= f.label :arrival_continent, 'Continent', class: 'form-label fw-bold' %>
-        <%= f.collection_select :arrival_continent, @continents,
-        :name, :name, {}, { class: 'form-select' } %>
-      </div>
-      <div class="mb-2">
-        <%= f.label :arrival_country, 'Country', class: 'form-label fw-bold' %>
-        <%= f.grouped_collection_select :arrival_country, @continents,
-        :countries, :name, :name, :name, {}, { class: 'form-select' } %>
-      </div>
       <div class="mb-2">
         <%= f.label :arrival_airport, 'Airport', class: 'form-label fw-bold' %>
         <%= f.grouped_collection_select :arrival_airport, @countries,

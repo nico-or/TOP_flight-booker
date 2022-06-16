@@ -1,7 +1,8 @@
 class FlightsController < ApplicationController
   def index
-    @continents = Continent.all.order(:name).includes(:countries)
-    @countries = Country.all.order(:name).includes(:airports)
-    @flights = Flight.all.order(:departure)
+    @flights = Flight.all.order(:departure).includes(:departure_airport)
+    @countries = @flights.map(&:departure_airport)
+                         .map(&:country).uniq
+                         .sort { |a, b| a.name <=> b.name }
   end
 end
