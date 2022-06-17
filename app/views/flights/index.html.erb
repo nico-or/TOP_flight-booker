@@ -6,7 +6,7 @@
       <h4>Departure</h4>
       <div class = 'mb-2'>
         <%= f.label :departure_airport, 'Airport', class: 'form-label fw-bold' %>
-        <%= f.grouped_collection_select :departure_airport, @countries,
+        <%= f.grouped_collection_select :departure_airport, @departure_countries,
         :airports, :name, :code, :name, {}, { class: 'form-select' }%>
       </div>
     </div>
@@ -14,7 +14,7 @@
       <h4>Destination</h4>
       <div class="mb-2">
         <%= f.label :arrival_airport, 'Airport', class: 'form-label fw-bold' %>
-        <%= f.grouped_collection_select :arrival_airport, @countries,
+        <%= f.grouped_collection_select :arrival_airport, @arrival_countries,
         :airports, :name, :code, :name, {}, { class: 'form-select' } %>
       </div>
     </div>
