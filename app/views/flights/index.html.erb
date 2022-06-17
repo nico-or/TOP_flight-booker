@@ -29,7 +29,20 @@
       <%= f.submit 'Search Flight', class: 'btn btn-primary mt-4' %>
     </div>
   </div>
+<% end %>
 
+<% unless @selection.nil? %>
+  <%= form_with url: '#', method: :get do |f| %>
+    <%= f.label :flight, 'Choose your Flight', class: 'form-label fw-bold' %>
+    <% @selection.each do |flight| %>
+      <div class="form-check">
+        <%= f.label "id_#{flight.id}", flight.radio_label, class: 'form-check-label' %>
+        <%= f.radio_button :id, flight.id, class: 'form-check-input' %>
+      </div>
+    <% end %>
 
-
+    <div>
+      <%= f.submit 'Select Flight', class: 'btn btn-primary mt-4' %>
+    </div>
+  <% end %>
 <% end %>
