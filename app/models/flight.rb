@@ -3,6 +3,9 @@ class Flight < ApplicationRecord
 
   belongs_to :destination_airport, class_name: 'Airport'
 
+  has_many :bookings
+  has_many :passengers, through: :bookings
+
   def strf_departure_ymd
     departure.strftime('%Y%m%d')
   end
