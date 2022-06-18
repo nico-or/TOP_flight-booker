@@ -32,7 +32,7 @@
 <% end %>
 
 <% unless @selection.nil? %>
-  <%= form_with url: '#', method: :get do |f| %>
+  <%= form_with url: '/bookings/new', method: :get do |f| %>
     <%= f.label :flight, 'Choose your Flight', class: 'form-label fw-bold' %>
     <% @selection.each do |flight| %>
       <div class="form-check">
