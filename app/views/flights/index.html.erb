@@ -10,6 +10,7 @@
         :airports, :name, :code, :name, {}, { class: 'form-select' }%>
       </div>
     </div>
+
     <div class='col-lg-6 mb-4'>
       <h4>Destination</h4>
       <div class="mb-2">
@@ -21,11 +22,17 @@
   </div>
 
   <div class="row">
-    <div class='col-lg-6'>
+    <div class='col-lg-6 mb-4'>
       <%= f.label :time, 'Flight Time', class: 'form-label fw-bold' %>
       <%= f.collection_select :time, @flights, :id, :strf_departure_dmy, {}, { class: 'form-select' } %>
     </div>
-    <div class = "col ms-auto align-self-end justify-self-right">
+
+    <div class="col mb-4">
+      <%= f.label :num_tickets, 'Number of tickets', class: 'form-label fw-bold' %>
+      <%= f.select :num_tickets, 1.upto(4), {}, { class: 'form-select' } %>
+    </div>
+
+    <div class = "col mb-4 ms-auto align-self-end justify-self-right">
       <%= f.submit 'Search Flight', class: 'btn btn-primary mt-4' %>
     </div>
   </div>
@@ -33,6 +40,9 @@
 
 <% unless @selection.nil? %>
   <%= form_with url: '/bookings/new', method: :get do |f| %>
+
+    <%= hidden_field_tag :num_tickets, params[:num_tickets] %>
+
     <%= f.label :flight, 'Choose your Flight', class: 'form-label fw-bold' %>
     <% @selection.each do |flight| %>
       <div class="form-check">
