@@ -75,3 +75,12 @@ NUM_FLIGHTS.times do
     duration: flight_duration
   )
 end
+
+## Passengers
+10.times do
+  name = Faker::Name.name
+  Passenger.create(
+    name: name,
+    email: Faker::Internet.free_email(name: name)
+  )
+end
