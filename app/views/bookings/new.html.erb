@@ -1,14 +1,6 @@
 <h1>Passenger Registration</h1>
 
-<h2>Flight info</h2>
-<dl class='row'>
-  <dt class='col-md-3'>Departure Airport:</dt>
-  <dd class='col-md-9'><%= @flight.departure_airport.name %></dd>
-  <dt class='col-md-3'>Destination Airport:</dt>
-  <dd class='col-md-9'><%= @flight.destination_airport.name %></dd>
-  <dt class='col-md-3'>Departure Time:</dt>
-  <dd class='col-md-9'><%= @flight.departure %></dd>
-</dl>
+<%= render partial: "flights/card" , locals: {flight: @flight} %>
 
 <h2>Passenger info</h2>
 <%= form_with model: @booking do |booking_form| %>
