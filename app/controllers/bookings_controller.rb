@@ -5,6 +5,10 @@ class BookingsController < ApplicationController
     params[:num_tickets].to_i.times { @booking.passengers.build }
   end
 
+  def create
+    @booking = Booking.new(booking_params)
+  end
+
   private
 
   def booking_params
