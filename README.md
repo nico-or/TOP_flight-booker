@@ -34,6 +34,8 @@ Technical requirements:
 Further improvements ideas:
   - Add dynamic content to the search input fields.
   - Implement a better search algorithm to find flights.
+  - Better flights and passengers partials
+  - Improve bookings#new view (nested passenger form)
 
 ---
 
