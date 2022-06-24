@@ -14,11 +14,11 @@
 <%= form_with model: @booking do |booking_form| %>
 
   <%= hidden_field :booking, :flight_id %>
+
   <div class="row">
-    <% params[:num_tickets].to_i.times do |i| %>
-      <%= booking_form.fields_for :passenger, index: i do |passenger_form| %>
+      <%= booking_form.fields_for :passengers do |passenger_form| %>
         <div class="col-md-6 mb-4">
-          <h3>Passenger #<%=i + 1%></h3>
+          <h3>Passenger</h3>
 
           <div class="row mb-2">
             <%= passenger_form.label :name, 'Name', class: 'col-form-label col-sm-2' %>
@@ -36,7 +36,6 @@
 
         </div>
       <% end %>
-    <% end %>
   </div>
 
   <%= booking_form.submit 'Create Reservation', class: 'btn btn-primary' %>
