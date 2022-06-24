@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 require 'csv'
+require 'faker'
+
 def load_csv(path)
   opts = { headers: true, header_converters: :symbol }
   CSV.read(path, opts)
@@ -73,14 +75,5 @@ NUM_FLIGHTS.times do
     destination_airport_id: destination_id,
     departure: departure_datetime,
     duration: flight_duration
-  )
-end
-
-## Passengers
-10.times do
-  name = Faker::Name.name
-  Passenger.create(
-    name: name,
-    email: Faker::Internet.free_email(name: name)
   )
 end
