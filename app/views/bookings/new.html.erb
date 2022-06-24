@@ -1,2 +1,43 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<h1>Passenger Registration</h1>
+
+<h2>Flight info</h2>
+<dl class='row'>
+  <dt class='col-md-3'>Departure Airport:</dt>
+  <dd class='col-md-9'><%= @flight.departure_airport.name %></dd>
+  <dt class='col-md-3'>Destination Airport:</dt>
+  <dd class='col-md-9'><%= @flight.destination_airport.name %></dd>
+  <dt class='col-md-3'>Departure Time:</dt>
+  <dd class='col-md-9'><%= @flight.departure %></dd>
+</dl>
+
+<h2>Passenger info</h2>
+<%= form_with model: @booking do |booking_form| %>
+
+  <%= hidden_field :booking, :flight_id %>
+  <div class="row">
+    <% params[:num_tickets].to_i.times do |i| %>
+      <%= booking_form.fields_for :passenger, index: i do |passenger_form| %>
+        <div class="col-md-6 mb-4">
+          <h3>Passenger #<%=i + 1%></h3>
+
+          <div class="row mb-2">
+            <%= passenger_form.label :name, 'Name', class: 'col-form-label col-sm-2' %>
+            <div class="col-sm-10">
+              <%= passenger_form.text_field :name, class: 'form-control', required: true %>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <%= passenger_form.label :email, 'Email', class: 'col-form-label col-sm-2' %>
+            <div class="col-sm-10">
+              <%= passenger_form.email_field :email, class: 'form-control', required: true %>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= booking_form.submit 'Create Reservation', class: 'btn btn-primary' %>
+<% end %>
