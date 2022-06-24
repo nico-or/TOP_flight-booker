@@ -1,4 +1,9 @@
 class BookingsController < ApplicationController
+
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
   def new
     @flight = Flight.find(params[:flight_id])
     @booking = @flight.bookings.build

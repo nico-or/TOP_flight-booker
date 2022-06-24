@@ -1,0 +1,6 @@
+<h1>Booking</h1>
+
+<%= render partial: "flights/card" , locals: {flight: @booking.flight} %>
+
+<h2>Passengers</h2>
+<%= render partial: "passengers/card", collection: @booking.passengers, as: :passenger %>
