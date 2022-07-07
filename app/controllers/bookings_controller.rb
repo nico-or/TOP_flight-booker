@@ -14,6 +14,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
 
     if @booking.save
+      @booking.passengers.each do |passenger|
+        PassengerMailer.with(user: passenger, booking: @booking).confirmation_email.deliver_now
+      end
+
       redirect_to @booking
     else
       flash.now[:alert] = 'Booking could not be saved'

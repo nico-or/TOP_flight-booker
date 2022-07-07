@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Flight Booking Confirmation</h1>
+
+    <p><%= @user.name %>, your flight booking was sucesfully created.</p>
+
+    <%= render partial: "flights/card" , locals: {flight: @booking.flight} %>
+
+    <p>Thanks for trusting us to flight.</p>
+  </body>
+</html>
