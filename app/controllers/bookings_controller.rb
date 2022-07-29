@@ -11,16 +11,18 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @flight = Flight.find(booking_params[:flight_id])
     @booking = Booking.new(booking_params)
 
     if @booking.save
       @booking.passengers.each do |passenger|
         PassengerMailer.with(user: passenger, booking: @booking).confirmation_email.deliver_now
       end
-
+      flash[:notice] = "Booking successfully created"
       redirect_to @booking
     else
-      flash.now[:alert] = 'Booking could not be saved'
+      flash[:alert] = "Booking could not be saved"
+      render :new
     end
   end
 
